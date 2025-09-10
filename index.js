@@ -3,7 +3,7 @@ const cors = require("cors");
 const app = express();
 
 const { initializeDatabase } = require("./db/db.connect");
-const Event = require("./models/events.models"); // Assuming you have this model
+const Event = require("./models/events.models");
 
 // Middleware
 const corsOption = {
@@ -18,7 +18,7 @@ app.use(express.json());
 // Initialize the database connection
 initializeDatabase();
 
-// --- API Helper Functions (Best practice: keep business logic separate from routes) ---
+// --- API Helper Functions
 
 // Create a new event
 async function createNewEvent(newEvent) {
@@ -114,8 +114,6 @@ app.get("/events", async (req, res) => {
   }
 });
 
-// IMPORTANT: The specific `/events/search` route MUST come BEFORE the dynamic `/events/:id` route.
-// This prevents Express from mistaking "search" as a valid ID.
 app.get("/events/search", async (req, res) => {
   try {
     const { type, q } = req.query; // type=Online/Offline/Both, q=search term
