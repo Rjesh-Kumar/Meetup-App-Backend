@@ -45,7 +45,7 @@ const eventSchema = new mongoose.Schema(
     date: { type: Date, required: true },
     type: {
       type: String,
-      enum: ["Online Event", "Offline Event"],
+      enum: ["Online", "Offline"],
       required: true,
     },
     thumbnailUrl: { type: String },
